@@ -108,6 +108,7 @@ WORKDIR /var/lib/zabbix
 
 COPY resources/docker-entrypoint.sh /usr/bin/
 COPY resources/speedtest.sh /etc/zabbix/speedtest/
+COPY resources/speedtest.conf /etc/zabbix/zabbix_agentd.d/
 
 RUN echo "*/10 * * * * /etc/zabbix/speedtest/speedtest.sh > /dev/null 2>&1" > /etc/crontabs/root
 
