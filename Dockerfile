@@ -46,6 +46,7 @@ RUN set -eux && \
             pcre \
             libcurl \
             libldap \
+            busybox-suid \
             su-exec && \
     rm -rf /var/cache/apk/*
     
