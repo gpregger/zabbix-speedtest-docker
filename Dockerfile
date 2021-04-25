@@ -46,14 +46,10 @@ RUN set -eux && \
             pcre \
             libcurl \
             libldap \
-            busybox-suid \
             su-exec && \
     rm -rf /var/cache/apk/*
     
 RUN chmod u+s /sbin/su-exec
-
-RUN groupadd -r -g 2001 zabbix \
-    && useradd -r -u 1001 -g zabbix zabbix
 
 ARG MAJOR_VERSION=5.2
 ARG ZBX_VERSION=${MAJOR_VERSION}.6
