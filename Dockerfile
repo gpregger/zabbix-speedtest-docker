@@ -17,7 +17,7 @@ LABEL org.opencontainers.image.title="Zabbix agent" \
 
 STOPSIGNAL SIGTERM
 
-RUN apk add --no-cache dumb-init libcurl libxml2 libstdc++ libgcc
+RUN apk add --no-cache dumb-init libcurl libxml2 libstdc++ libgcc openrc
 COPY --from=compiler /build/SpeedTest /usr/local/bin/SpeedTest
 
 RUN set -eux && \
@@ -106,15 +106,12 @@ EXPOSE 10050/TCP
 
 WORKDIR /var/lib/zabbix
 
-COPY ["docker-entrypoint.sh", "/usr/bin/"]
-COPY ["speedtest.sh", "/etc/zabbix/speedtest/"]
+COPY resources/docker-entrypoint.sh /usr/bin/
+COPY resources/speedtest.sh /etc/zabbix/speedtest/
 
-RUN crontab -l > ~/mycron && \
-    echo "*/15 * * * * /etc/zabbix/speedtest/speedtest.sh >/dev/null 2>&1" >> ~/mycron && \
-    crontab ~/mycron && \
-    rm ~/mycron
+RUN echo "*/10 * * * * /etc/zabbix/speedtest/speedtest.sh > /dev/null 2>&1" > /etc/crontabs/root
 
-RUN rc-service crond start && rc-update add crond    
+CMD ['crond', '-l 2', '-f']
 
 ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/docker-entrypoint.sh"]
 
