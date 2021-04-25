@@ -1,5 +1,7 @@
 #!/bin/bash
 
+crond -l 2
+
 set -o pipefail
 
 set +e

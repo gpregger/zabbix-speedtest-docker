@@ -112,8 +112,6 @@ COPY resources/speedtest.conf /etc/zabbix/zabbix_agentd.d/
 
 RUN echo "*/10 * * * * /etc/zabbix/speedtest/speedtest.sh > /dev/null 2>&1" > /etc/crontabs/root
 
-RUN crond -l 2
-
 ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/docker-entrypoint.sh"]
 
 USER 1997
