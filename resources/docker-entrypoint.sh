@@ -1,6 +1,6 @@
 #!/bin/bash
 
-crond -l 2
+su-exec root crond -l 2
 
 set -o pipefail
 
