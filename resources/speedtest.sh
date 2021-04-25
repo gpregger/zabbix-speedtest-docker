@@ -59,7 +59,7 @@ display_help() {
 check_cache_exist() {
 	if [ ! -e "$1" ]
 	then
-		echo "Not yet runned the speedtest" >&2
+		echo "NO DATA" >&2
 		exit 2
 	fi
 }
@@ -69,11 +69,11 @@ then
 	case "$1" in
 		-u|--upload)
 			check_cache_exist "$CACHE_FILE"
-			grep -oP 'UPLOAD_SPEED=\K.*' "$CACHE_FILE"
+			sed -n 's/^UPLOAD_SPEED=//p' "$CACHE_FILE"
 			;;
 		-d|--download)
 			check_cache_exist "$CACHE_FILE"
-			grep -oP 'DOWNLOAD_SPEED=\K.*' "$CACHE_FILE"
+			sed -n 's/^DOWNLOAD_SPEED=//p' "$CACHE_FILE"
 			;;
 		-f|--force)
 			rm -rf "$LOCK_FILE"
