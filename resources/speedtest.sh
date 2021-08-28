@@ -22,7 +22,7 @@ run_speedtest() {
 	local output server_id server_sponsor country location ping download upload
 
 	#output=$(/usr/local/bin/SpeedTest --test-server speedtest.iwbtelekom.net:8080 --output text 2>&1)
-    /usr/local/bin/SpeedTest --test-server $SPEEDTEST_SERVER:8080 --output text > $CACHE_FILE
+    /usr/local/bin/SpeedTest --test-server $SPEEDTEST_SERVER --output text > $CACHE_FILE
 	
 	#Debug
 	#echo "Output: $output"
