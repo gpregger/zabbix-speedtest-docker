@@ -1,12 +1,12 @@
 # build
-FROM alpine:3.12 as compiler
+FROM alpine:latest as compiler
 RUN apk add --no-cache alpine-sdk cmake curl-dev libxml2-dev
 WORKDIR /build
 RUN git clone https://github.com/taganaka/SpeedTest.git . \
   && cmake -DCMAKE_BUILD_TYPE=Release . \
   && make
 
-FROM alpine:3.12
+FROM alpine:latest
 
 LABEL org.opencontainers.image.title="Zabbix agent" \
       org.opencontainers.image.authors="Alexey Pustovalov <alexey.pustovalov@zabbix.com>" \
