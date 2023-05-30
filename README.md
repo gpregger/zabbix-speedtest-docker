@@ -12,4 +12,4 @@ Where `some-zabbix-agent` is the name you want to assign to your container, `som
 
 ## 28.08.2021: SPEEDTEST_SERVER
 This image now supports setting the desired speedtest server via docker environment variable SPEEDTEST_SERVER.
-This should make it substantially more useful to people around the world
+This should make it substantially more useful to people around the world.
